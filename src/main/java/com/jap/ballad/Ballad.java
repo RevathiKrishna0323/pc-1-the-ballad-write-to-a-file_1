@@ -1,10 +1,22 @@
 package com.jap.ballad;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class Ballad {
     public void writePoemToAFile(String fileName, String data){
+        //create an object of the file output stream class
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(fileName, true);
+            fileOutputStream.write(data.getBytes());
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
 
     }
 
@@ -25,5 +37,7 @@ public class Ballad {
                 "Away to the window I flew like a flash,\n" +
                 "Tore open the shutters and threw up the sash.\n";
         // Call the function and write the ballad to the file
+        Ballad ballad1 = new Ballad();
+        ballad1.writePoemToAFile("src/main/resources/ballad.txt", ballad);
     }
 }
